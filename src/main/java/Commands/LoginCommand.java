@@ -34,8 +34,7 @@ public class LoginCommand implements Command{
                     User u = new User(username, password);
                     HttpSession session = request.getSession();
                     
-                    session.setAttribute("loggedin_status", "Welcome: " + u.getUsername());
-                    session.setAttribute("user_details", "Username: " + u.getUsername());
+                    session.setAttribute("loggedin_status", "You have successfully logged in: " + u);
                     session.setAttribute("login_num", 1);
                     forwardToJsp = "loggedin.jsp";
                 }
