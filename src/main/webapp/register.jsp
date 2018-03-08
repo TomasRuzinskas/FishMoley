@@ -1,6 +1,4 @@
 
-<%@page import="java.util.regex.Matcher"%>
-<%@page import="java.util.regex.Pattern"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page language="java"%>
 <!DOCTYPE html>
@@ -100,7 +98,7 @@
                                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="emailRegister">
                             </div>
                         </div>
-       
+
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Phone:</label>
                             <div class="col-sm-10">
@@ -131,9 +129,7 @@
                     </form>
                 </div>
         </div>
-         
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="pwd">                <%
+                <%
             Object obj = session.getAttribute("register_status");
             String registerstatus = (String) obj;
             if (registerstatus != null) {
@@ -141,7 +137,8 @@
                 <%=registerstatus%>
                 <%
             }
-        %></label>
+        %>
+
     </body>
 
 

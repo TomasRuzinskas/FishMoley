@@ -1,20 +1,10 @@
-<%-- 
-    Document   : loggedin
-    Created on : 07-Nov-2017, 13:30:23
-    Author     : d00186050
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Dtos.User"%>
-<%@page import="Daos.UserDao"%>
-<%@page import="Dtos.User"%>
-<%@page import="java.util.ArrayList"%>
-
+<%@page language="java"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Profile</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -39,22 +29,23 @@
             }
             body{
                 background-image: url("images/wallpaper.jpg");
-                color: black;
-
+                color: #000000;
+            }
+            footer{
+                background-image: url("images/wallpaper");
+            }
+            tr{
             }
 
         </style>
+        <title>Stores</title>
     </head>
     <body>
-        <h1>Success!</h1>
-        <%
-            // Get the error message variable out of the session
-            Object msg = session.getAttribute("loggedin_status");
-            // Cast it to a String so we can use it
-            String loggedin = (String) msg;
-
-            // Display the message
-        %>
+        <div class="jumbotron">
+            <div class="container text-center">
+                <h1>Fish Moley Store</h1>      
+            </div>
+        </div>
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -64,11 +55,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-brand" href="index.jsp">Logo</a>
+                    <a class="navbar-brand" href="css.jsp">Home</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.jsp">Home</a></li>
+                       
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Deals</a></li>
                         <li><a href="stores.jsp">Stores</a></li>
@@ -77,40 +68,22 @@
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.jsp"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+                        <li><a href="login.jsp"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                        <li><a href="register.jsp"><span class="glyphicon glyphicon-user"></span> Register</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                     </ul>
+
                 </div>
             </div>
         </nav>
+        <div>         
 
-       
-        <%    
-           Object msg2 = session.getAttribute("user_email");
-            // Cast it to a String so we can use it
-            String loggedin2 = (String) msg2;
-           
+    </div>
+        <h1><u>Some of our stores across Ireland</u></h1>
         
-            if(loggedin != null) {
-        %>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2346.0036503197102!2d-6.39618368406821!3d53.984958836819494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4860cc1416459c83%3A0x6cc743bdadf216c2!2sDundalk+Institute+of+Technology!5e0!3m2!1sen!2sie!4v1518094813746" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+</body>
 
 
-        <h1>Welcome</h1>
-        <div> <%=loggedin%> </div>
-        <h2>Your Details</h2>
-        
-        <% }
-            if(loggedin2 != null) {
-%> <div><%=loggedin2%></div>  <% }
-            // We have finished with the results of this action
-            // so now we can remove the value from the session
-            //session.removeAttribute("loggedin_status");
-            // This makes sure that old error messages 
-            // don't mistakenly get printed out later
-            
-        %> 
-
-
-
-    </body>
 </html>
