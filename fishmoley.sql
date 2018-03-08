@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2018 at 12:15 PM
+-- Generation Time: Mar 08, 2018 at 03:48 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.1.6
 
@@ -57,6 +57,8 @@ CREATE TABLE `category` (
 
 CREATE TABLE `products` (
   `product_id` int(10) NOT NULL,
+  `product_name` varchar(200) NOT NULL,
+  `product_price` decimal(30,30) NOT NULL,
   `category_id` int(10) NOT NULL,
   `supplier_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -84,19 +86,8 @@ CREATE TABLE `users` (
   `user_password` varchar(300) NOT NULL,
   `user_email` varchar(50) NOT NULL,
   `user_phone` varchar(50) DEFAULT NULL,
-  `admin_status` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_addresses`
---
-
-CREATE TABLE `user_addresses` (
-  `user_id` int(10) NOT NULL,
-  `address_id` int(10) NOT NULL,
-  `date_from` date NOT NULL
+  `admin_status` int(10) NOT NULL,
+  `address_id` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -108,7 +99,6 @@ CREATE TABLE `user_addresses` (
 CREATE TABLE `user_orders` (
   `order_id` int(10) NOT NULL,
   `user_id` int(10) NOT NULL,
-  `order_status_code` int(10) NOT NULL,
   `date_order_placed` date NOT NULL,
   `order_price` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -159,14 +149,8 @@ ALTER TABLE `suppliers`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- Indexes for table `user_addresses`
---
-ALTER TABLE `user_addresses`
-  ADD KEY `fk_user_id` (`user_id`),
-  ADD KEY `fk_address_id` (`address_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `address_id` (`address_id`);
 
 --
 -- Indexes for table `user_orders`
@@ -194,11 +178,10 @@ ALTER TABLE `products`
   ADD CONSTRAINT `fk_supplier_id` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`supplier_id`);
 
 --
--- Constraints for table `user_addresses`
+-- Constraints for table `users`
 --
-ALTER TABLE `user_addresses`
-  ADD CONSTRAINT `fk_address_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`address_id`),
-  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`address_id`);
 
 --
 -- Constraints for table `user_orders`
