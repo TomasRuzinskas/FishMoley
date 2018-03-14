@@ -5,45 +5,42 @@
  */
 package Daos;
 
-import Dtos.Product;
+import Dtos.Category;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
- * @author d00186050
+ * @author ruzinskastomas
  */
-public class ProductDao extends Dao {
+public class CategoryDao extends Dao{
 
-    public ProductDao(String databaseName) {
+    public CategoryDao(String databaseName) {
         super(databaseName);
     }
-
-    public ArrayList<Product> AllProducts() {
-        ArrayList<Product> products = new ArrayList();
+    
+    public ArrayList<Category> AllCategories() {
+        ArrayList<Category> categories = new ArrayList();
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             conn = getConnection();
 
-            String query = "SELECT * FROM products";
+            String query = "SELECT * FROM category";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                Product p = new Product();
+                Category c = new Category();
 
-                p.setProduct_id(rs.getInt("product_id"));
-                p.setProduct_name(rs.getString("product_name"));
-                p.setProduct_price(rs.getDouble("product_price"));
-                p.setCategory_id(rs.getInt("category_id"));
-                p.setSupplier_id(rs.getInt("supplier_id"));
+                c.setCategory_id(rs.getInt("category_id"));
+                c.setCategory_name(rs.getString("category_name"));
 
-                products.add(p);
+                categories.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -64,7 +61,6 @@ public class ProductDao extends Dao {
             }
             freeConnection(conn);
         }
-        return products;
+        return categories;
     }
-   
 }

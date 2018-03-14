@@ -156,7 +156,7 @@ public class UserDao extends Dao{
         }
         return loggedin;
     }
-    public int registerUser(String username,String password,String password2,String email,String phone) {
+    public int registerUser(String username,String password,String password2,String email,String phone,String address1, String address2) {
         ArrayList<User> users = new ArrayList();
         Connection conn = null;
         PreparedStatement ps = null;
@@ -175,12 +175,14 @@ public class UserDao extends Dao{
             }
             if(!username.equals(usernamefromquery)) {
                 if (password.equals(password2)) {
-                    String query2 = "INSERT INTO users(user_id, username, user_password, user_email, user_phone, admin_status) VALUES (NULL,?,?,?,?,0)";
+                    String query2 = "INSERT INTO users(user_id, username, user_password, user_email, user_phone, addressline1, addressline2, admin_status) VALUES (NULL,?,?,?,?,?,?,0)";
                     ps = conn.prepareStatement(query2);
                     ps.setString(1, username);
                     ps.setString(2, password);
                     ps.setString(3, email);
                     ps.setString(4, phone);
+                    ps.setString(5, address1);
+                    ps.setString(6, address2);
                     rowsAffected = ps.executeUpdate();
                     if (rowsAffected > 0) {
                         registered = 1;

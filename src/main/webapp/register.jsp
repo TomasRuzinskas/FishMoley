@@ -90,21 +90,21 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Username:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fname" placeholder="Enter Username" name="usernameRegister">
+                                <input type="text" class="form-control" id="fname" placeholder="Enter Username" name="usernameRegister" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Email:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="emailRegister">
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="emailRegister" required>
                             </div>
                         </div>
        
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Phone:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" placeholder="Enter Phone Number" name="phoneRegister">
+                                <input type="text" class="form-control" id="username" placeholder="Enter Phone Number" name="phoneRegister" required>
                             </div>
                         </div>
 
@@ -116,9 +116,24 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="pwd">Password:</label>
+                            <label class="control-label col-sm-2" for="pwd">Re-enter Password:</label>
                             <div class="col-sm-10">          
                                 <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="passwordRegister2" required>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Address line 1:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address1" placeholder="Enter Address" name="address1Register" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Address line 2(Optional):</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address2" placeholder="Enter Address" name="address2Register">
                             </div>
                         </div>
 

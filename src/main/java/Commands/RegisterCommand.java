@@ -27,7 +27,10 @@ public class RegisterCommand implements Command {
         String Username = request.getParameter("usernameRegister");
         String Password = request.getParameter("passwordRegister1");
         String Password2 = request.getParameter("passwordRegister2");
+        String Phone = request.getParameter("phoneRegister");
         String Email = request.getParameter("emailRegister");
+        String Address1 = request.getParameter("address1Register");
+        String Address2 = request.getParameter("address2Register");
 //              ^                 # start-of-string
 //(?=.*[0-9])   # a digit must occur at least once
 //(?=.*[a-z])   # a lower case letter must occur at least once
@@ -42,16 +45,21 @@ public class RegisterCommand implements Command {
         Matcher emailMatcher = emailPattern.matcher(Email);
         Matcher pwdMatcher = pwdPattern.matcher(Password);
         Matcher pwd2Matcher = pwdPattern.matcher(Password2);
+        int Result = 0;
         if(pwdMatcher.find() != false && pwd2Matcher.find() != false) {
             if (emailMatcher.find() != false) {
-        String Phone = request.getParameter("phoneRegister");
-        if (Username != null || Password != null || Password2 != null) {
+        
+        if (Username != null || Password != null || Password2 != null || Email != null || Address1 != null) {
             try {
                 UserDao userdao = new UserDao("fishmoley");
                 String HashedPassword = userdao.hashPassword(Password);
                 String HashedPassword2 = userdao.hashPassword(Password2);
-                int Result = userdao.registerUser(Username, HashedPassword, HashedPassword2, Email, Phone);
-
+                if (Address2 != null) {
+                    Result = userdao.registerUser(Username, HashedPassword, HashedPassword2, Email, Phone,Address1,Address2);
+                }
+                else {
+                    Result = userdao.registerUser(Username, HashedPassword, HashedPassword2, Email, Phone,Address1,"");
+                }
                 if (Result == 1) {
                     User u = new User(Username, Password);
                     HttpSession session = request.getSession();
@@ -69,10 +77,15 @@ public class RegisterCommand implements Command {
                     session.setAttribute("register_status", "Passwords not the same!");
                     forwardToJsp = "register.jsp";
                 }
+                else {
+                forwardToJsp = "error.jsp";
+                HttpSession session = request.getSession();
+                session.setAttribute("errorMessage", "Not Registered");
+                }
             } catch (NumberFormatException e) {
                 forwardToJsp = "error.jsp";
                 HttpSession session = request.getSession();
-                session.setAttribute("errorMessage", "Not logged in");
+                session.setAttribute("errorMessage", "Not Registered");
             } catch (NoSuchAlgorithmException ex) {
                 forwardToJsp = "error.jsp";
                 HttpSession session = request.getSession();
