@@ -72,4 +72,74 @@ public class ProductDao extends Dao{
         }
         return categories;
     }
+    
+     public ArrayList<Product> addProduct(){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Product> products = new ArrayList();
+        int added = 0;
+        int rowsAffected = 0;
+        
+        try {
+            con = this.getConnection();
+            
+      ps = con.prepareStatement ("INSERT INTO products(product_id, product_name, product_price, product_details category_id, supplier_id) VALUES (NULL,?,?,?,?,?)" );
+      rs = ps.executeQuery() ;
+            
+            while(rs.next()){
+                Product p = new Product();
+                p.setString(1, product_name );
+                p.setInt(2, product_price);
+                p.setProduct_details(rs.getString("product_details"));
+                p.setCategory_id(rs.getInt("category_id"));
+                p.setSupplier_id(rs.getInt("supplier_id"));
+                
+                products.add(p);
+            }
+        }
+        catch( SQLException se )
+        {
+            System.out.println( "SQL Exception occurred: " + se.getMessage() );
+            se.printStackTrace();
+        }
+        catch( Exception e )
+        {
+            System.out.println("Exception occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+        finally
+        {
+            // Close the result set, statement and the connection
+            if(rs!= null)
+            {
+                try
+                {
+                    rs.close() ;
+                } 
+                catch (SQLException ex){
+                    System.out.println("Exception occurred when attempting to close ResultSet: " + ex.getMessage());
+                }
+            }
+            if(ps != null)
+            {
+                try{
+                    ps.close() ;
+                } 
+                catch (SQLException ex){
+                    System.out.println("Exception occurred when attempting to close the PreparedStatement: " + ex.getMessage());
+                }
+            }
+            if(con != null)
+            {
+                try{
+                    con.close() ;
+                } 
+                catch (SQLException ex){
+                    System.out.println("Exception occurred when attempting to close the Connection: " + ex.getMessage());
+                }
+            }
+        }
+        return products;
+    }
 }

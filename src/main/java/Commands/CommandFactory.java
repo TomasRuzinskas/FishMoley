@@ -38,6 +38,9 @@ public class CommandFactory {
                 case "register":
                     command = new RegisterCommand();
                     break;
+                     case "addProduct":
+                    command = new AddProductCommand();
+                    break;
                 default: 
                     command = new NoValidActionCommand();
                     break;

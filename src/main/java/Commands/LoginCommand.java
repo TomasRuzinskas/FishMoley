@@ -29,15 +29,12 @@ public class LoginCommand implements Command{
                 UserDao userdao = new UserDao("fishmoley");
                 String hashedPassword = userdao.hashPassword(password);
                 int Result = userdao.Login(username,hashedPassword);
-                User Details = userdao.findEmailByUsername(username);
                 
                 if(Result == 1) {
                     User u = new User(username, password);
-                   
                     HttpSession session = request.getSession();
                     
-                    session.setAttribute("loggedin_status", "Ordinary User " + u.getUsername());
-                    session.setAttribute("user_email", "Email: " + Details.getEmail());
+                    session.setAttribute("loggedin_status", "You have successfully logged in: " + u);
                     session.setAttribute("login_num", 1);
                     forwardToJsp = "loggedin.jsp";
                 }
@@ -45,7 +42,7 @@ public class LoginCommand implements Command{
                     User u = new User(username, password);
                     HttpSession session = request.getSession();
                     
-                    session.setAttribute("loggedin_status", " Admin" + u.getUsername());
+                    session.setAttribute("loggedin_status", "You have successfully logged in as admin!: " + u);
                     session.setAttribute("login_num", 2);
                     forwardToJsp = "loggedin.jsp";
                 }
