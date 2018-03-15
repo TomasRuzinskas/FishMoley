@@ -10,7 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Success</title>
+        <%@include file="includes/styleandscripts.jsp" %>
     </head>
+    <%@include file="includes/nav.jsp" %>
     <body>
         <h1>Success!</h1>
         <%
@@ -30,7 +32,7 @@
             // don't mistakenly get printed out later
 %> 
 
-<div><a href="index.html">Back to index</a></div>
+<div><a href="index.jsp">Back to index</a></div>
 <a href="register.jsp">Register</a><br>
 <a href="viewProducts.jsp">View Products</a><br>
 <a href="login.jsp">Logout</a>

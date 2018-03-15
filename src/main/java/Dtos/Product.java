@@ -12,11 +12,12 @@ package Dtos;
 public class Product {
     public int product_id;
     
+    
     public String product_name;
 
     public double product_price;
     
-    public String  product_details;
+    public String product_details;
     
     public int category_id;
     
@@ -54,7 +55,7 @@ public class Product {
     }
 
     public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+        this.product_id = product_id++;
     }
 
     public int getCategory_id() {

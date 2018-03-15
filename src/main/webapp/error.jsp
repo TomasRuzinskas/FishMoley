@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <%@include file="includes/styleandscripts.jsp" %>
         <title>Error</title>
     </head>
+    <%@include file="includes/nav.jsp" %>
     <body>
         <h1>Something went wrong</h1>
         <%
